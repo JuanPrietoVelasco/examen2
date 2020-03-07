@@ -9,6 +9,7 @@ import empresa_jpv.Enumerados.Categoria;
 import empresa_jpv.Empleado;
 import java.lang.reflect.Array;
 import java.util.Scanner;
+
 /**
  * Clase Directivo: hereda de Empleado, un directivo puede tener a su cargo
  * varios empleados (entre 0 a 5). El directivo tendrá una categoría tipo
@@ -23,44 +24,41 @@ import java.util.Scanner;
  */
 public class Directivo extends Empleado {
 
-    Categoria categoria;
+    private Categoria categoria;
 
-    Empleado[] subordinados = new Empleado[5];
+    private Empleado[] subordinados = new Empleado[5];
 
-    double sueldo;
-
+    //el sueldo ya viene heredado de personal.
+    //private double sueldo;
     public Directivo(String nombre, String apellidos, String dni, int edad, double sueldoBruto, Categoria categoria) {
         super(nombre, apellidos, dni, edad, sueldoBruto);
         this.categoria = categoria;
     }
 
     protected double calcularSalarioNeto() {
-        int retencion = 17;
-        double sueldo = sueldoBruto / 0.17;
+        //int retencion = 17;
+        int complemento;
 
-        if (categoria == categoria.values()[0]) {
+        if (this.categoria == Categoria.DIRECTOR) {
 
-            sueldo = sueldo + 900;
+            complemento = 900;
 
-        }
+        } else if (categoria == Categoria.GERENTE) {
 
-        if (categoria == categoria.values()[1]) {
+            complemento = 500;
 
-            sueldo = sueldo + 500;
+        } else {
 
-        }
-
-        if (categoria == categoria.values()[2]) {
-
-            sueldo = sueldo + 350;
+            complemento = 350;
 
         }
 
-        return sueldo;
+        return super.calcularSalarioNeto() + complemento;
     }
 
     @Override
     public String toString() {
+
         return super.toString() + "\t\tCategoría: " + this.categoria;
     }
 
@@ -76,23 +74,19 @@ public class Directivo extends Empleado {
     }
 
     public void altaSubordinado(Empleado empleado) {
-        
-        Scanner sc = new Scanner (System.in);
+
+        Scanner sc = new Scanner(System.in);
         //Con la variable pos controlamos si se lee todo el array y está lleno.
         int pos = -1;
-        
+
         //variable para trabajar con el dni del empleado
         String dni;
-        
-        
 
         for (int i = 0; i < subordinados.length; i++) {
 
             if (subordinados[i] == null) {
 
                 pos = i;
-                
-                
 
             }
 

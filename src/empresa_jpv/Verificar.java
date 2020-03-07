@@ -14,18 +14,39 @@ import java.util.regex.Matcher;
  */
 public class Verificar {
     
-    public boolean comprobarDni(String dni){
+   /**
+    * comprobarTelefono: devolverá verdadero si el teléfono introducido por
+    * parámetro contiene 9 números, falso en caso contrario.
+    * @param dni
+    * @return 
+    */
+    public static boolean comprobarTelefono (int telefono){
         
-        boolean valido = false;
+       
         
-//        Pattern compile() = (\d{8}[A-Z]{1});
-//        Matcher m = compile.equals(dni);
-    
+        String numero = String.valueOf(telefono);
         
-        return valido;
+        Pattern p = Pattern.compile("\\d{9}");
+        Matcher m = p.matcher(numero);
+                
+        
+        return m.matches();
     }
     
     
     
     
+    
+    public static boolean comprobarDni(String dni){
+        
+        
+        
+            Pattern p = Pattern.compile("\\d{8}[A-Z]{1}");
+            Matcher m = p.matcher(dni);
+           
+          
+        return m.matches();
+    }
+    
+
 }

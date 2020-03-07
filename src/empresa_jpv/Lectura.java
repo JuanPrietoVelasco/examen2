@@ -42,9 +42,10 @@ public class Lectura {
 
         while (!correcto) {
 
-            int valor = Integer.parseInt(sc.nextLine());
-
             try {
+
+                int valor = Integer.parseInt(sc.nextLine());
+
                 if (valor >= min && valor <= max) {
 
                     correcto = true;
@@ -54,6 +55,8 @@ public class Lectura {
                 }
 
             } catch (Exception e) {
+
+                System.out.println("Introduzca un valor numérico.");
             }
 
         }
@@ -72,25 +75,25 @@ public class Lectura {
     }
 
     public static String leerString(String msg, int longitud) {
-        
-        String cadena="";
-        
+
+        String cadena = "";
+
         System.out.println(msg);
-        
+
         int longCadena;
 
         boolean correcto = false;
 
         while (!correcto) {
-            
+
             cadena = sc.nextLine();
             longCadena = cadena.length();
-            
+
             if (longCadena <= longitud) {
                 correcto = true;
 
             } else {
-                System.out.println("El texto no puede tener más de " + longitud + " carecteres.");
+                System.out.println("El texto no puede tener más de " + longitud + " carecteres.\nIntroduzca el texto de nuevo: ");
             }
 
         }

@@ -24,9 +24,8 @@ public class Empleado extends Persona {
     protected double calcularSalarioNeto() {
 
         int retencion = 17;
-        double sueldo = sueldoBruto / 0.17;
-
-        return sueldo;
+        
+        return this.sueldoBruto - (this.sueldoBruto*(retencion/100));
     }
 
     @Override
